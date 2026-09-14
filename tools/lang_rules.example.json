@@ -1,0 +1,109 @@
+{
+  "_说明": [
+    "relang 改写规则文件。复制一份命名为 lang_rules.json，按自己的课程修改后使用。",
+    "",
+    "执行顺序：先 exact、再 global。",
+    "  exact  —— 按文件路径定位的精确改写，用于「把某条英文定义句改成中文主述 + PPT 原文附注」。",
+    "            键 = 相对 --root 的文件路径；值 = [[原文, 改写], ...]。",
+    "  global —— 无差别应用的标签替换，用于「小节标题 / 表头 / 状态值 / 字段标签」中文化。",
+    "            这一段是全库通用的，可直接复用，一般不需要改。",
+    "",
+    "用法：python relang.py --rules lang_rules.json --root <笔记目录> --dry"
+  ],
+
+  "exact": {
+    "_示例_请替换为你自己的文件路径": [
+      [
+        "- **Definition**：a fixed tax that is owed by everyone and is not subject to anything taxpayers can change；与收入、消费、财富均无关。",
+        "- **定义**：一种人人必须缴纳、且税额不受纳税人任何行为影响的固定税；与收入、消费、财富均无关。\n\n  > PPT 原文：a fixed tax that is owed by everyone and is not subject to anything taxpayers can change"
+      ],
+      [
+        "- **Equity**：perceived fairness of an outcome，经济学家通常把公平分析限定为政策对福利在公民间分布的影响。",
+        "- **Equity（公平）**：对结果的公平感知；经济学家通常把公平分析限定为政策对福利在公民之间分布的影响。\n\n  > PPT 原文：perceived fairness of an outcome"
+      ]
+    ],
+    "_格式提示": [
+      "每条 exact 是 [原文, 改写] 两元组。",
+      "「原文」必须与笔记中的字符串逐字符一致（含全角标点、加粗标记、缩进）。",
+      "「改写」里插入 PPT 原句附注时，注意 JSON 中的换行要写成 \\n。",
+      "跑 --dry 时，任何 exact 未命中都会被单独列出——这是发现「笔记已被改动」的信号。"
+    ]
+  },
+
+  "global": [
+    { "_": "—— 主页小节 ——" },
+    ["## Course Overview", "## 课程简介"],
+    ["## Prerequisites", "## 先修要求"],
+    ["## Learning Objectives", "## 课程目标"],
+    ["## Books", "## 教材"],
+    ["## Assessment", "## 考核方式"],
+    ["## Course Timeline", "## 课程进度"],
+    ["## Lectures", "## 讲次"],
+    ["## Core Concepts", "## 核心概念"],
+    ["## Weekly Reviews", "## 周复习"],
+    ["## Course Logistics", "## 课程信息"],
+    ["## Materials", "## 原始材料位置"],
+
+    { "_": "—— 讲义小节 ——" },
+    ["## Quick Review", "## 快速回顾"],
+    ["## Key Concepts", "## 核心概念"],
+    ["## Key Frameworks / Models", "## 核心框架与模型"],
+    ["## Key Frameworks/Models", "## 核心框架与模型"],
+    ["## Professor's Additions", "## 老师补充"],
+    ["## Assessment Signals", "## 评估信号"],
+    ["## Connections", "## 关联"],
+
+    { "_": "—— 概念页小节 ——" },
+    ["## Definition", "## 定义"],
+    ["## Key Idea", "## 核心理解"],
+    ["## Components", "## 构成要素"],
+    ["## Framework / Visual", "## 框架 · 图示"],
+    ["## Appears In", "## 出现于"],
+    ["## Professor's Notes", "## 老师补充"],
+    ["## Assessment Relevance", "## 评估相关性"],
+
+    { "_": "—— 周复习小节 ——" },
+    ["## What We Learned This Week", "## 一、本周讲了什么"],
+    ["## Connections Between Lectures", "## 三、讲次之间的关系"],
+    ["## Must-Know Frameworks", "## 四、必掌握的框架"],
+    ["## Assessment Watch", "## 考核关注点"],
+
+    { "_": "—— 表格列头 ——" },
+    ["| Assessment | Weight | Due | Status |", "| 考核项 | 权重 | 截止 | 状态 |"],
+    ["| Lecture | Topic | Status |", "| 讲次 | 主题 | 状态 |"],
+    ["| Week | Topic | Status |", "| 周次 | 主题 | 状态 |"],
+
+    { "_": "—— 状态值（注意只替换独立出现的整词）——" },
+    ["— Taught", "— 已讲授"],
+    ["— Material Available", "— 课件已到位"],
+    ["— Planned", "— 计划中"],
+    ["| Taught |", "| 已讲授 |"],
+    ["| Material Available |", "| 课件已到位 |"],
+    ["| Planned |", "| 计划中 |"],
+    ["| TBA |", "| 待定 |"],
+    ["status: taught", "status: 已讲授"],
+    ["status: material-available", "status: 课件已到位"],
+    ["status: planned", "status: 计划中"],
+
+    { "_": "—— 字段标签 ——" },
+    ["**Definition**：", "**定义**："],
+    ["**Purpose**：", "**用途**："],
+    ["**Components**：", "**构成**："],
+    ["**How it is used**：", "**如何使用**："],
+    ["**Key property**：", "**关键性质**："],
+    ["**Why it matters**：", "**为什么重要**："],
+    ["**Real case**：", "**现实案例**："],
+
+    { "_": "—— 固定句式 ——" },
+    ["⚠️ Course materials do not provide enough information to explain this point clearly.", "⚠️ 课程材料未提供足够信息，无法清楚解释这一点。"],
+    ["No explicit assessment signals identified.", "未发现明确的评估信号。"],
+    ["Based on lecture slides.", "基于课件。"],
+
+    { "_": "—— 信号来源标注 ——" },
+    ["**Syllabus explicit**", "**Syllabus 明确**"],
+    ["**Professor explicitly stated**", "**老师明确说明**"],
+    ["**Professor stated**", "**老师口头说明**"],
+    ["Professor explicitly emphasized", "老师明确强调"],
+    ["Professor emphasized", "老师强调"]
+  ]
+}
